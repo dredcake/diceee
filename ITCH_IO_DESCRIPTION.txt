@@ -1,0 +1,27 @@
+🎲 DICE GAME - Test Your Luck!
+
+Roll the dice and see if you can beat the odds in this simple but addictive casino-style game!
+
+🎯 HOW TO PLAY:
+• Start with 100 coins
+• Click PLAY to enter the game
+• Pay 5 coins per roll
+• Watch the probability box - your win chance changes every roll (20-80%)
+• Roll 4, 5, or 6 = WIN! Get 15 coins back (+10 profit)
+• Roll 1, 2, or 3 = LOSE! Just the 5 coins you paid
+
+🎰 FEATURES:
+• Dynamic probability system - no two games are the same!
+• Coin balance saves automatically between sessions  
+• Clean, simple interface with casino theme
+• Visual feedback with color flashes for wins/losses
+• Fair gameplay with realistic odds
+
+🎮 CONTROLS:
+• Click PLAY to start
+• Click SPIN to roll the dice
+• That's it! Simple and fun.
+
+Perfect for quick gaming sessions or testing your luck! Can you turn 100 coins into a fortune?
+
+Tags: dice, casino, probability, gambling, simple, luck, coins, betting
