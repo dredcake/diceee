@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://0y4vuidfwam6"]
+
+[ext_resource type="Texture2D" uid="uid://chiivaf7x3pas" path="res://poker-and-casino-playing-card-black-background-vector.jpg" id="1_5h02f"]
+[ext_resource type="Texture2D" uid="uid://cudgjjo7kfls" path="res://dice faces.png" id="1_h535k"]
+[ext_resource type="Script" uid="uid://c234rpxiww8jy" path="res://main.gd" id="1_r7xae"]
+[ext_resource type="Script" uid="uid://df6gnxe7hjprf" path="res://dice.gd" id="3_5h02f"]
+[ext_resource type="Texture2D" uid="uid://bcw6ubuat5y11" path="res://spin_buttton_1-removebg-preview.png" id="4_r7xae"]
+[ext_resource type="Texture2D" uid="uid://botysx2i864j2" path="res://coin-removebg-preview-removebg-preview.png" id="5_ahqho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkppe"]
+atlas = ExtResource("1_h535k")
+region = Rect2(0, 0, 92, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2xu8"]
+atlas = ExtResource("1_h535k")
+region = Rect2(92, 0, 92, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h02f"]
+atlas = ExtResource("1_h535k")
+region = Rect2(184, 0, 92, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7xae"]
+atlas = ExtResource("1_h535k")
+region = Rect2(0, 91, 92, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahqho"]
+atlas = ExtResource("1_h535k")
+region = Rect2(92, 91, 92, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqx4v"]
+atlas = ExtResource("1_h535k")
+region = Rect2(184, 91, 92, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w21ue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkppe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2xu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h02f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7xae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahqho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqx4v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="dice roll" type="Node2D"]
+position = Vector2(-4, -15)
+script = ExtResource("1_r7xae")
+metadata/_edit_horizontal_guides_ = [-12.0]
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(509.00006, 278)
+scale = Vector2(1.245, 1.2475)
+texture = ExtResource("1_5h02f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(508, 217)
+scale = Vector2(1.777174, 1.432692)
+sprite_frames = SubResource("SpriteFrames_w21ue")
+frame = 4
+frame_progress = 0.81218034
+script = ExtResource("3_5h02f")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 196.0
+offset_top = 218.0
+offset_right = 803.0
+offset_bottom = 595.0
+texture_normal = ExtResource("4_r7xae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(88, 82)
+scale = Vector2(0.3791666, 0.41208792)
+texture = ExtResource("5_ahqho")
+
+[node name="coinLabel" type="Label" parent="Sprite2D"]
+offset_top = -16.986664
+offset_right = 150.32971
+offset_bottom = 43.680008
+theme_override_font_sizes/font_size = 50
+
+[connection signal="pressed" from="TextureButton" to="." method="on_spin_pressed"]
