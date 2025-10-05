@@ -3,10 +3,12 @@ extends Node2D
 var money := 100
 var is_spinning := false
 var save_manager
+var current_probability := 50  # starts at 50%
 
 @onready var dice_anim = $AnimatedSprite2D
 @onready var spinBtn = $TextureButton
 @onready var coin_label = get_coin_label()
+@onready var prob_label = $ProbabilityBox/probLabel
 
 func _ready():
 	randomize()
@@ -22,6 +24,7 @@ func _ready():
 		print("SaveManager not found, using defaults")
 	
 	update_coin_display()
+	update_probability_display()
 	
 	# Always connect the button (the scene connection should work, but let's be sure)
 	print("Connecting spin button...")
@@ -69,8 +72,15 @@ func on_spin_pressed():
 	var rolled_val = dice_anim.get_val()
 	print("Rolled: ", rolled_val)
 	
-	# Apply winnings (no more losses since we already paid to roll)
-	if rolled_val >= 4:
+	# Check if player wins based on current probability
+	var random_chance = randi_range(1, 100)
+	var player_wins = random_chance <= current_probability
+	
+	print("Random chance: ", random_chance, ", Current probability: ", current_probability, "%")
+	print("Player wins: ", player_wins)
+	
+	# Apply winnings based on probability, not dice value
+	if player_wins:
 		money += 15  # Win 15 coins (net +10 after paying 5 to roll)
 		flash_label_color(Color.GREEN)
 		print("Win! +15 coins (net +10)")
@@ -78,6 +88,9 @@ func on_spin_pressed():
 		# No additional loss - we already paid 5 to roll
 		flash_label_color(Color.RED)
 		print("Loss! No additional coins (already paid 5 to roll)")
+	
+	# Generate new probability for next roll
+	generate_new_probability()
 	
 	print("money now: ", money)
 	update_coin_display()
@@ -111,3 +124,15 @@ func save_money(amount: int):
 
 func load_money() -> int:
 	return 100
+
+func update_probability_display():
+	if prob_label:
+		prob_label.text = "Probability: " + str(current_probability) + "%"
+	
+	print("Probability display updated: ", current_probability, "%")
+
+func generate_new_probability():
+	# Generate random probability between 20% and 80%
+	current_probability = randi_range(20, 80)
+	print("New probability generated: ", current_probability, "%")
+	update_probability_display()
